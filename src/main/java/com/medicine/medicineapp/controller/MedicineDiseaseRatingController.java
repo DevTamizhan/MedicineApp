@@ -32,6 +32,8 @@ public class MedicineDiseaseRatingController {
 
     private HttpServletResponse buildResponseFromCookie(HttpServletRequest request, HttpServletResponse response)
     {
+        if(request.getCookies() == null)
+            return response;
         String id = request.getCookies()[0].getValue();
         Cookie cookie = new Cookie(request.getCookies()[0].getName(),id);
         response.addCookie(cookie);
