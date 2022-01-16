@@ -13,9 +13,11 @@ import com.medicine.medicineapp.exception.NotAuthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
+@CrossOrigin
 public class ErrorHandler {
 
     private HttpServletResponse buildResponseFromCookie(HttpServletRequest request, HttpServletResponse response)
