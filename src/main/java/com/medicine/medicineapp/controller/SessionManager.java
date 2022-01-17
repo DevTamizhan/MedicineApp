@@ -37,7 +37,7 @@ public class SessionManager {
 
     public static int CreateAdminSession(String user)
     {
-        sessionMap.put(loginCounter, user);
+        adminSessionMap.put(loginCounter, user);
         ++loginCounter;
         return loginCounter -1;
     }
