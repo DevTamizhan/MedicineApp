@@ -38,7 +38,7 @@ public class UserLoginController {
         return new ResponseEntity<>(true,HttpStatus.CREATED);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<Boolean> loginUser(@RequestBody UserLoginDto user,HttpServletRequest request, HttpServletResponse response) throws SQLException
     {
         UserLoginDto dto = service.getUserLoginInfo(user.getUserId());
