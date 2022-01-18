@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/")
-@CrossOrigin
+@CrossOrigin(allowedHeaders = {"Access-Control-Allow-Credentials"})
 public class UserLoginController {
 
     @Autowired

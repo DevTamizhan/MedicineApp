@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-@CrossOrigin
+@CrossOrigin(allowedHeaders = {"Access-Control-Allow-Credentials"})
 public class ErrorHandler {
 
     private HttpServletResponse buildResponseFromCookie(HttpServletRequest request, HttpServletResponse response)

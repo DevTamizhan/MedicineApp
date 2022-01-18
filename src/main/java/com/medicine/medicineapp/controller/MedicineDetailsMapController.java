@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(allowedHeaders = {"Access-Control-Allow-Credentials"})
 @RequestMapping("/mapDisease")
 public class MedicineDetailsMapController {
 
