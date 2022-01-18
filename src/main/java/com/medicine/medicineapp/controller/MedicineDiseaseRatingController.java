@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/rate")
-@CrossOrigin(allowedHeaders = {"Access-Control-Allow-Credentials", "Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers"})
+@CrossOrigin(allowedHeaders = "*")
 public class MedicineDiseaseRatingController {
     
     @Autowired
