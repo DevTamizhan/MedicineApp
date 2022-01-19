@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS medicine_disease_map(
 	entry_id int primary key auto_increment,
     medicine_id int not null,
     disease_name varchar(200) not null,
+    CONSTRAINT unique_constraint UNIQUE(medicine_id,disease_name),
     constraint medicine_id_fkey foreign key (medicine_id) references medicine_details(medicine_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

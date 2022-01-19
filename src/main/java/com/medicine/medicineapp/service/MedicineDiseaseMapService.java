@@ -40,7 +40,7 @@ public class MedicineDiseaseMapService {
             MedicineDiseaseMap mapData = daoConvertor.toMedicineDiseaseMap(data);
             MedicineDiseaseMap inserted = repository.insert(mapData);
             MedicineDiseaseMapDto returnVal = dtoConvertor.toMedicineDiseaseMapDto(inserted);
-            returnVal.setMedicineDetails(service.getMedicineDetailFor(inserted.getEntryId()));
+            returnVal.setMedicineDetails(service.getMedicineDetailFor(inserted.getMedicineId()));
             return returnVal;
         }
         catch(Exception e)
@@ -56,7 +56,7 @@ public class MedicineDiseaseMapService {
             MedicineDiseaseMap mapData = daoConvertor.toMedicineDiseaseMap(data);
             MedicineDiseaseMap inserted = repository.update(mapData);
             MedicineDiseaseMapDto returnVal = dtoConvertor.toMedicineDiseaseMapDto(inserted);
-            returnVal.setMedicineDetails(service.getMedicineDetailFor(inserted.getEntryId()));
+            returnVal.setMedicineDetails(service.getMedicineDetailFor(inserted.getMedicineId()));
             return returnVal;
         }
         catch(Exception e)
@@ -72,7 +72,7 @@ public class MedicineDiseaseMapService {
             MedicineDiseaseMap mapData = daoConvertor.toMedicineDiseaseMap(data);
             MedicineDiseaseMap inserted = repository.delete(mapData);
             MedicineDiseaseMapDto returnVal = dtoConvertor.toMedicineDiseaseMapDto(inserted);
-            returnVal.setMedicineDetails(service.getMedicineDetailFor(inserted.getEntryId()));
+            returnVal.setMedicineDetails(service.getMedicineDetailFor(inserted.getMedicineId()));
             return returnVal;
         }
         catch(Exception e)

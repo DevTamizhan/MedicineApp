@@ -12,8 +12,6 @@ import com.medicine.medicineapp.dto.MedicineDiseaseMapDto;
 import com.medicine.medicineapp.dto.MedicineDiseaseRatingDto;
 import com.medicine.medicineapp.dto.UserLoginDto;
 import com.medicine.medicineapp.dto.UserTypeDto;
-import com.medicine.medicineapp.service.MedicineDetailsService;
-import com.medicine.medicineapp.service.MedicineDiseaseMapService;
 
 public class DaoToDtoConvertor {
 
