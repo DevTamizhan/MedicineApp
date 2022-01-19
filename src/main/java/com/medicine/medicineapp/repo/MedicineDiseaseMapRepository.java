@@ -77,8 +77,8 @@ public class MedicineDiseaseMapRepository implements IRepository<MedicineDisease
         statement.setInt(1, data.getMedicineId());
         statement.setString(2, data.getDiseaseName());
         statement.setInt(3, data.getEntryId());
-        connection.commit();
         connection.setAutoCommit(false);
+        connection.commit();
         if(statement.executeUpdate() == 1)
         {
             connection.commit();
@@ -94,8 +94,8 @@ public class MedicineDiseaseMapRepository implements IRepository<MedicineDisease
     public MedicineDiseaseMap delete(MedicineDiseaseMap data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(this.deleteQuery);
         statement.setInt(1, data.getEntryId());
-        connection.commit();
         connection.setAutoCommit(false);
+        connection.commit();
         if(statement.executeUpdate() == 1)
         {
             connection.commit();

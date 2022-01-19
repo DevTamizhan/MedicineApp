@@ -64,8 +64,8 @@ public class UserLoginRepository implements IRepository<UserLogin,String> {
         statement.setString(1, data.getPassword());
         statement.setString(2, data.getUserType().name());
         statement.setString(3, data.getUserId());
-        connection.commit();
         connection.setAutoCommit(false);
+        connection.commit();
         if(statement.executeUpdate() !=1)
         {
             connection.rollback();
@@ -81,8 +81,8 @@ public class UserLoginRepository implements IRepository<UserLogin,String> {
     public UserLogin delete(UserLogin data) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(this.deleteQuery);
         statement.setString(1, data.getUserId());
-        connection.commit();
         connection.setAutoCommit(false);
+        connection.commit();
         if(statement.executeUpdate() != 1)
         {
             connection.rollback();

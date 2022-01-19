@@ -90,8 +90,8 @@ public class MedicineDetailsRepository implements IRepository<MedicineDetails,In
         statement.setInt(3, data.getMinAge());
         statement.setInt(4, data.getMaxAge());
         statement.setInt(5, data.getMedicineId());
-        connection.commit();
         connection.setAutoCommit(false);
+        connection.commit();
         if(statement.executeUpdate() == 1)
         {
             connection.commit();
@@ -109,8 +109,8 @@ public class MedicineDetailsRepository implements IRepository<MedicineDetails,In
         
         PreparedStatement statement = connection.prepareStatement(this.deleteQuery);
         statement.setInt(1, data.getMedicineId());
-        connection.commit();
         connection.setAutoCommit(false);
+        connection.commit();
         int affected = statement.executeUpdate();
         if(affected != 1)
         {

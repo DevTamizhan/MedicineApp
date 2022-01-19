@@ -56,8 +56,8 @@ public class MedicineDiseaseRatingRepository implements IRepository<MedicineDise
         statement.setString(1, data.getUserId());
         statement.setInt(2 , data.getEntryId());
         statement.setDouble(3, data.getRating());
-        connection.commit();
         connection.setAutoCommit(false);
+        connection.commit();
         if(statement.executeUpdate() == 1)
         {
             connection.commit();
@@ -78,8 +78,8 @@ public class MedicineDiseaseRatingRepository implements IRepository<MedicineDise
         statement.setString(2, data.getUserId());
         statement.setInt(3 , data.getEntryId());
         statement.setDouble(1, data.getRating());
-        connection.commit();
         connection.setAutoCommit(false);
+        connection.commit();
         if(statement.executeUpdate() == 1)
         {
             connection.commit();
@@ -97,8 +97,8 @@ public class MedicineDiseaseRatingRepository implements IRepository<MedicineDise
         PreparedStatement statement = connection.prepareStatement(this.deleteQuery);
         statement.setString(1, data.getUserId());
         statement.setInt(2 , data.getEntryId());
-        connection.commit();
         connection.setAutoCommit(false);
+        connection.commit();
         if(statement.executeUpdate() == 1)
         {
             connection.commit();
