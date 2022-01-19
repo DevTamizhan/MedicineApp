@@ -111,7 +111,7 @@ public class MedicineDiseaseRatingRepository implements IRepository<MedicineDise
 
     @Override
     public MedicineDiseaseRating getById(Integer id) throws SQLException {
-        List<MedicineDiseaseRating> _all = this.getAllByField(Constants.MEDICINE_DISEASE_RATING_USER_ID, id);
+        List<MedicineDiseaseRating> _all = this.getAllByField(Constants.MEDICINE_DISEASE_RATING_RATING_ID, id);
         if(_all.size() == 0)
             throw new DataNotFoundException("MedicineDiseaseRating with id "+ id +" is not found");
         return _all.get(0);

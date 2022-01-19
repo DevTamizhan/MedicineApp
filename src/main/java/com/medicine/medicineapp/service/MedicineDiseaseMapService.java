@@ -30,7 +30,10 @@ public class MedicineDiseaseMapService {
 
     public MedicineDiseaseMapDto getMedicineDiseaseMap(int id) throws SQLException
     {
-        return dtoConvertor.toMedicineDiseaseMapDto(repository.getById(id));
+        MedicineDiseaseMap map = repository.getById(id);
+        MedicineDiseaseMapDto dto = dtoConvertor.toMedicineDiseaseMapDto(map);
+        dto.setMedicineDetails(service.getMedicineDetailFor(map.getMedicineId()));;
+        return dto;
     }
 
     public MedicineDiseaseMapDto addMedicineDiseaseMap(MedicineDiseaseMapDto data)
