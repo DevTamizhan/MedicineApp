@@ -22,6 +22,9 @@ public class MedicineDiseaseRatingService {
     @Autowired
     private MedicineDiseaseRatingRepository repository;
 
+    @Autowired
+    private MedicineDiseaseMapService service;
+
     DaoToDtoConvertor dtoConvertor = new DaoToDtoConvertor();
 
     DtoToDaoConvertor daoConvertor = new DtoToDaoConvertor();
@@ -31,7 +34,10 @@ public class MedicineDiseaseRatingService {
         try
         {
             MedicineDiseaseRating rating = daoConvertor.toMedicineDiseaseRating(data);
-            return dtoConvertor.toMedicineDiseaseRatingDto(repository.insert(rating));
+            MedicineDiseaseRating inserted = repository.insert(rating);
+            MedicineDiseaseRatingDto returnVal = dtoConvertor.toMedicineDiseaseRatingDto(inserted);
+            returnVal.setDiseaseMap(service.getMedicineDiseaseMap(inserted.getEntryId()));
+            return returnVal;
         }
         catch(Exception e)
         {
@@ -44,7 +50,10 @@ public class MedicineDiseaseRatingService {
         try
         {
             MedicineDiseaseRating rating = daoConvertor.toMedicineDiseaseRating(data);
-            return dtoConvertor.toMedicineDiseaseRatingDto(repository.update(rating));
+            MedicineDiseaseRating inserted = repository.update(rating);
+            MedicineDiseaseRatingDto returnVal = dtoConvertor.toMedicineDiseaseRatingDto(inserted);
+            returnVal.setDiseaseMap(service.getMedicineDiseaseMap(inserted.getEntryId()));
+            return returnVal;
         }
         catch(Exception e)
         {
@@ -57,7 +66,10 @@ public class MedicineDiseaseRatingService {
         try
         {
             MedicineDiseaseRating rating = daoConvertor.toMedicineDiseaseRating(data);
-            return dtoConvertor.toMedicineDiseaseRatingDto(repository.delete(rating));
+            MedicineDiseaseRating inserted = repository.delete(rating);
+            MedicineDiseaseRatingDto returnVal = dtoConvertor.toMedicineDiseaseRatingDto(inserted);
+            returnVal.setDiseaseMap(service.getMedicineDiseaseMap(inserted.getEntryId()));
+            return returnVal;
         }
         catch(Exception e)
         {
@@ -69,7 +81,11 @@ public class MedicineDiseaseRatingService {
     {
         try
         {
-            return dtoConvertor.toMedicineDiseaseRatingDto(repository.getById(id));
+            MedicineDiseaseRating rating = repository.getById(id);
+            MedicineDiseaseRatingDto dto = dtoConvertor.toMedicineDiseaseRatingDto(rating)           ;
+            dto.setDiseaseMap(service.getMedicineDiseaseMap(rating.getEntryId()));
+            return dto;
+
         }
         catch(Exception e)
         {
@@ -98,7 +114,9 @@ public class MedicineDiseaseRatingService {
     {
         List<MedicineDiseaseRatingDto> result = new ArrayList<>();
         for (MedicineDiseaseRating each : all) {
-            result.add(dtoConvertor.toMedicineDiseaseRatingDto(each));
+            MedicineDiseaseRatingDto returnVal = dtoConvertor.toMedicineDiseaseRatingDto(each);
+            returnVal.setDiseaseMap(service.getMedicineDiseaseMap(each.getEntryId()));
+            result.add(returnVal);
         }
         return result;
     }

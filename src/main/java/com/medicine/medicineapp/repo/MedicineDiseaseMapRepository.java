@@ -55,13 +55,18 @@ public class MedicineDiseaseMapRepository implements IRepository<MedicineDisease
         PreparedStatement statement = connection.prepareStatement(this.insertQuery);
         statement.setInt(1, data.getMedicineId());
         statement.setString(2, data.getDiseaseName());
-        if(statement.executeUpdate() == 1)
+        int res = statement.executeUpdate();
+        System.out.println(res);
+        if(res == 1)
         {
             statement = connection.prepareStatement(this.getLast);
             ResultSet set = statement.executeQuery();
             if(set.next())
                 return parse(set);
-            throw new DataInsertionException("MedicineDiseaseMap data cannot be inserted");
+            else
+            {
+                throw new DataInsertionException("MedicineDiseaseMap data cannot be inserted");
+            }
         }
         throw new DataInsertionException("Insertion of MedicineDiseaseMap with id " + data.getEntryId() +" failed");
     }
@@ -130,6 +135,7 @@ public class MedicineDiseaseMapRepository implements IRepository<MedicineDisease
         map.setEntryId(set.getInt(1));
         map.setMedicineId(set.getInt(2));
         map.setDiseaseName(set.getString(3));
+        System.out.println(map.getEntryId());
         return map;
     }
 

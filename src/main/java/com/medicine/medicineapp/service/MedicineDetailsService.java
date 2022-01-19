@@ -29,10 +29,12 @@ public class MedicineDetailsService {
     {
         try
         {
+            System.out.println(dtoConvertor == null);
             return dtoConvertor.toMedicineDetailsDto(repository.getById(id));
         }
         catch(Exception e)
         {
+            System.out.println("not found");
             throw new DataNotFoundException("Medicine detail cannot be fetched for Id " + id, e);
         }
     }

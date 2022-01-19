@@ -134,8 +134,10 @@ public class MedicineDetailsRepository implements IRepository<MedicineDetails,In
         {
             MedicineDetails details = this.parseFromResultSet(set);
             set.close();
+            System.out.println("found the medicine detail");
             return details;
         }
+        System.out.println("No data");
         throw new DataNotFoundException("MedicineDetails with id "+ id+" is not found");
     }
 

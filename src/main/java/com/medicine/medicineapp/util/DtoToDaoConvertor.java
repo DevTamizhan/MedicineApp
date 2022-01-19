@@ -1,7 +1,7 @@
 package com.medicine.medicineapp.util;
 
-import com.medicine.medicineapp.dao.MedicineDiseaseMap;
 import com.medicine.medicineapp.dao.MedicineDetails;
+import com.medicine.medicineapp.dao.MedicineDiseaseMap;
 import com.medicine.medicineapp.dao.MedicineDiseaseRating;
 import com.medicine.medicineapp.dao.UserLogin;
 import com.medicine.medicineapp.dao.UserType;
@@ -11,9 +11,6 @@ import com.medicine.medicineapp.dto.MedicineDiseaseRatingDto;
 import com.medicine.medicineapp.dto.UserLoginDto;
 import com.medicine.medicineapp.dto.UserTypeDto;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public class DtoToDaoConvertor {
 	
 	public UserType toUserType(UserTypeDto dto)
