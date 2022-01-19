@@ -20,8 +20,11 @@ public class MedicineDiseaseRatingRepository implements IRepository<MedicineDise
     private final Connection connection;
 
     private final String insertQuery = 
-            String.format("INSERT INTO %s VALUES(?,?,?)", 
-            Constants.MEDICINE_DISEASE_RATING_TABLE);
+            String.format("INSERT INTO %s(%s,%s,%s) VALUES(?,?,?)", 
+            Constants.MEDICINE_DISEASE_RATING_TABLE,
+            Constants.MEDICINE_DISEASE_RATING_USER_ID,
+            Constants.MEDICINE_DISEASE_RATING_ENTRY_ID,
+            Constants.MEDICINE_DISEASE_RATING_RATING_FILED);
 
     private final String updateQuery = 
             String.format("UPDATE %s SET %s = ? WHERE %s = ? AND %s = ?", 
@@ -56,18 +59,13 @@ public class MedicineDiseaseRatingRepository implements IRepository<MedicineDise
         statement.setString(1, data.getUserId());
         statement.setInt(2 , data.getEntryId());
         statement.setDouble(3, data.getRating());
-        connection.setAutoCommit(false);
-        connection.commit();
         if(statement.executeUpdate() == 1)
         {
-            connection.commit();
-            connection.setAutoCommit(true);
             PreparedStatement inserted = connection.prepareStatement(this.getLastEntered);
             ResultSet set = inserted.executeQuery();
-            return parse(set);
+            if(set.next())
+                return parse(set);
         }
-        connection.rollback();
-        connection.setAutoCommit(true);
         throw new DataInsertionException("Insertion of MedicineDiseaseRating for user id " + data.getUserId() +
                                 "and for disease " + data.getEntryId() +" failed");
     }
@@ -136,9 +134,10 @@ public class MedicineDiseaseRatingRepository implements IRepository<MedicineDise
     private MedicineDiseaseRating parse(ResultSet set) throws SQLException
     {
         MedicineDiseaseRating rating = new MedicineDiseaseRating();
-        rating.setUserId(set.getString(1));
-        rating.setEntryId(set.getInt(2));
-        rating.setRating(set.getDouble(3));
+        rating.setRatingId(set.getInt(1));
+        rating.setUserId(set.getString(2));
+        rating.setEntryId(set.getInt(3));
+        rating.setRating(set.getDouble(4));
         return rating;
     }
 
