@@ -3,12 +3,10 @@ package com.medicine.medicineapp.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.medicine.medicineapp.dto.MedicineDiseaseRatingDto;
-import com.medicine.medicineapp.exception.NotAuthorizedException;
 import com.medicine.medicineapp.service.MedicineDiseaseRatingService;
 
 import org.springframework.beans.factory.annotation.Autowired;

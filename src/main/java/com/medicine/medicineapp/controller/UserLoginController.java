@@ -53,7 +53,7 @@ public class UserLoginController {
         return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public ResponseEntity<Boolean> logout(@RequestBody UserLoginDto user, HttpServletRequest request,
             HttpServletResponse response) {
         return new ResponseEntity<>(true, HttpStatus.OK);
