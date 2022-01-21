@@ -176,7 +176,7 @@ public class MedicineDetailsRepository implements IRepository<MedicineDetails,In
             details.setMedicineName(set.getString(2));
             details.setPrice(set.getDouble(3));
             details.setMinAge(set.getInt(4));
-            details.setMaxAge(set.getInt(4));
+            details.setMaxAge(set.getInt(5));
             return details;
     }
 
