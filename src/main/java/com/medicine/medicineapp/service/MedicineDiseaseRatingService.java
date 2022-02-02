@@ -3,6 +3,8 @@ package com.medicine.medicineapp.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.medicine.medicineapp.dao.MedicineDiseaseRating;
 import com.medicine.medicineapp.dto.MedicineDiseaseRatingDto;
@@ -108,6 +110,20 @@ public class MedicineDiseaseRatingService {
     {
         List<MedicineDiseaseRating> _all = repository.getAllByField(Constants.MEDICINE_DISEASE_RATING_ENTRY_ID, medicineDiseaseEntry);
         return convertToList(_all);
+    }
+
+    public List<MedicineDiseaseRatingDto> getAllRatingsByRatingValue(int value) throws SQLException
+    {
+        List<MedicineDiseaseRating> _all = repository.getAllByField(Constants.MEDICINE_DISEASE_RATING_RATING_FILED, value);
+        return convertToList(_all);
+    }
+
+    public List<MedicineDiseaseRatingDto> getAllRatingsByUserWithRating(String user, int value) throws SQLException
+    {
+        List<MedicineDiseaseRatingDto> _all = this.getAllRatingByUser(user);
+        Stream<MedicineDiseaseRatingDto> s = _all.stream();
+        return s.filter(item -> Math.round(item.getRating()) == value).collect(Collectors.toList());
+        
     }
 
     private List<MedicineDiseaseRatingDto> convertToList(List<MedicineDiseaseRating> all) throws SQLException

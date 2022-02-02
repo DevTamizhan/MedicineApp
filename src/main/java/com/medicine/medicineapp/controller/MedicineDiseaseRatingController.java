@@ -43,7 +43,7 @@ public class MedicineDiseaseRatingController {
     @DeleteMapping("/delete")
     public ResponseEntity<MedicineDiseaseRatingDto> deleteRating(@RequestBody MedicineDiseaseRatingDto dto,
             HttpServletRequest request, HttpServletResponse response) {
-        
+
         return new ResponseEntity<>(service.deleteMedicineDiseaseRating(dto), HttpStatus.ACCEPTED);
     }
 
@@ -63,7 +63,31 @@ public class MedicineDiseaseRatingController {
     @GetMapping("/getAll")
     public ResponseEntity<List<MedicineDiseaseRatingDto>> getAll(HttpServletRequest request,
             HttpServletResponse response) throws SQLException {
-            return new ResponseEntity<>(service.getAllRatings(), HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllRatings(), HttpStatus.OK);
     }
 
+    @GetMapping("/getAll/rate/{value}")
+    public ResponseEntity<List<MedicineDiseaseRatingDto>> getAllByRating(HttpServletRequest request,
+            HttpServletResponse response, @PathVariable("value") int value) throws SQLException {
+        return new ResponseEntity<>(service.getAllRatingsByRatingValue(value), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAll/userId/{userId}/rate/{value}")
+    public ResponseEntity<List<MedicineDiseaseRatingDto>> getAllRatingByUserWithRating(HttpServletRequest request,
+            HttpServletResponse response, @PathVariable("userId") String user, @PathVariable("value") int value)
+            throws SQLException {
+        return new ResponseEntity<>(service.getAllRatingsByUserWithRating(user, value), HttpStatus.OK);
+    }
+
+    @GetMapping("/getCount/rate/{value}")
+    public ResponseEntity<Integer> getCountForRating(HttpServletRequest request, HttpServletResponse response,
+            @PathVariable("value") int value) throws SQLException {
+        return new ResponseEntity<>(service.getAllRatingsByRatingValue(value).size(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getCount/userId/{userId}/rate/{value}")
+    public ResponseEntity<Integer> getCountForUserWithRating(HttpServletRequest request, HttpServletResponse response,
+            @PathVariable("value") int value, @PathVariable("userId") String user) throws SQLException {
+        return new ResponseEntity<>(service.getAllRatingsByUserWithRating(user,value).size(), HttpStatus.OK);
+    }
 }
