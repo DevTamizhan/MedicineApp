@@ -3,10 +3,12 @@ package com.medicine.medicineapp.repo;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -59,10 +61,20 @@ class JdbcService {
         path += "data.sql";
         Statement stmt = connection.createStatement();
         try{
-            String query = Files.readString(Path.of(path));
+            List<String> allLines = Files.readAllLines(Paths.get(path));
+            System.out.println(allLines.size());
+            StringBuilder builder = new StringBuilder();
+            for (String line : allLines) {
+                builder.append(line);
+                //builder.append("\n");
+            }
+            String query = builder.toString();
+            System.out.println(builder.toString());
             String[] queries = query.split(";");
+            System.out.println(queries.length);
             for(String q : queries){
-                stmt.execute(q);
+                System.out.println(q);
+                System.out.println(stmt.execute(q));
             }
         }
         catch(IOException e)
